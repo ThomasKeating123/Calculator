@@ -1,0 +1,87 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="516" Width="280"
+        ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Background="Transparent">
+                                <Ellipse Name="border" Stroke="Black"
+                                         StrokeThickness="0"
+                                         Height="60" Width="60">
+                                    <Ellipse.Fill>
+                                        <SolidColorBrush Color="White"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Fill">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="LightGray"  Opacity="80"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <!-- Text Box -->
+        <TextBox x:Name="TbCalculation" Grid.Row="0" Grid.ColumnSpan="4" TextAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" ToolTip="input and output of the calculation"/>
+
+        <!-- Number Buttons -->
+        <Button x:Name="Btn9" Grid.Row="1" Grid.Column="2" Content="9" FontSize="20" FontWeight="Bold" Click="Btn9_Click" BorderThickness="0" ToolTip="Button for number 9"/>
+        <Button x:Name="Btn8" Grid.Row="1" Grid.Column="1" Content="8" FontSize="20" FontWeight="Bold" Click="Btn8_Click" BorderThickness="0" ToolTip="Button for number 8"/>
+        <Button x:Name="Btn7" Grid.Row="1" Grid.Column="0" Content="7" FontSize="20" FontWeight="Bold" Click="Btn7_Click" BorderThickness="0" ToolTip="Button for number 7"/>
+        <Button x:Name="Btn6" Grid.Row="2" Grid.Column="2" Content="6" FontSize="20" FontWeight="Bold" Click="Btn6_Click" BorderThickness="0" ToolTip="Button for number 6"/>
+        <Button x:Name="Btn5" Grid.Row="2" Grid.Column="1" Content="5" FontSize="20" FontWeight="Bold" Click="Btn5_Click" BorderThickness="0" ToolTip="Button for number 5"/>
+        <Button x:Name="Btn4" Grid.Row="2" Grid.Column="0" Content="4" FontSize="20" FontWeight="Bold" Click="Btn4_Click" BorderThickness="0" ToolTip="Button for number 4"/>
+        <Button x:Name="Btn3" Grid.Row="3" Grid.Column="2" Content="3" FontSize="20" FontWeight="Bold" Click="Btn3_Click" BorderThickness="0" ToolTip="Button for number 3"/>
+        <Button x:Name="Btn2" Grid.Row="3" Grid.Column="1" Content="2" FontSize="20" FontWeight="Bold" Click="Btn2_Click" BorderThickness="0" ToolTip="Button for number 2"/>
+        <Button x:Name="Btn1" Grid.Row="3" Grid.Column="0" Content="1" FontSize="20" FontWeight="Bold" Click="Btn1_Click" BorderThickness="0" ToolTip="Button for number 1"/>
+        <Button x:Name="Btn0" Grid.Row="4" Grid.Column="1" Content="0" FontSize="20" FontWeight="Bold" Click="Btn0_Click" BorderThickness="0" ToolTip="Button for number 0"/>
+
+        <!-- Other Buttons -->
+        <Button x:Name="BtnAC" Grid.Row="4" Grid.Column="2" Content="AC" FontSize="20" FontWeight="Bold" Click="BtnAC_Click" BorderThickness="0" ToolTip="Button to clear the textbox"/>
+        <Button x:Name="BtnPoint" Grid.Row="4" Grid.Column="0" Content="." FontSize="20" FontWeight="Bold" Click="BtnPoint_Click" BorderThickness="0" ToolTip="Button to add decimal point"/>
+        <Button x:Name="BtnEquals" Grid.Row="5" Grid.Column="2" Content="=" FontSize="20" FontWeight="Bold" Click="BtnEquals_Click" BorderThickness="0" ToolTip="Button to perform the calculation"/>
+        <Button x:Name="BtnLBracket" Grid.Row="5" Grid.Column="0" Content="(" FontSize="20" FontWeight="Bold" Click="BtnLBracket_OnClick" BorderThickness="0" ToolTip="Button to add an opening bracket"/>
+        <Button x:Name="BtnRBracket" Grid.Row="5" Grid.Column="1" Content=")" FontSize="20" FontWeight="Bold" Click="BtnRBracket_OnClick" BorderThickness="0" ToolTip="Button to add a closing bracket"/>
+        <Button x:Name="BtnAns" Grid.Row="5" Grid.Column="3" Content="ANS" FontSize="20" FontWeight="Bold" Click="BtnAns_OnClick" BorderThickness="0" ToolTip="Button to get last answer"/>
+
+        <!-- Math Buttons -->
+        <Button x:Name="BtnAdd" Grid.Row="1" Grid.Column="3" Content="+" FontSize="20" FontWeight="Bold" Click="BtnAdd_Click" BorderThickness="0" ToolTip="Button to add"/>
+        <Button x:Name="BtnSub" Grid.Row="2" Grid.Column="3" Content="-" FontSize="20" FontWeight="Bold" Click="BtnSub_Click" BorderThickness="0" ToolTip="Button to subtract"/>
+        <Button x:Name="BtnMulti" Grid.Row="3" Grid.Column="3" Content="*" FontSize="20" FontWeight="Bold" Click="BtnMulti_Click" BorderThickness="0" ToolTip="Button to multiply"/>
+        <Button x:Name="BtnDiv" Grid.Row="4" Grid.Column="3" Content="/" FontSize="20" FontWeight="Bold" Click="BtnDiv_Click" BorderThickness="0" ToolTip="Button to divide"/>
+    </Grid>
+</Window>
